@@ -28,19 +28,19 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
                 <td><?php echo $value['email']; ?></td>
                 <td><?php echo $value['fecha']; ?></td>
                 <td>
-                    <div class="btn btn-group">
+                    <div class="btn-group">
                         <div class="px-1">
-                            <a href="index.php?pagina=editar&id=<?php echo $value['id']; ?>" class="btn btn-warning"><i class="fas fa-pencil"></i></a>
+                            <a href="index.php?pagina=editar&id=<?php echo $value['id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                         </div>
+                        <form method="POST">
+                            <input type="hidden" value="<?php echo $value['id']; ?>" name="eliminarRegistro" />
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            <?php
+                                $eliminar = new ControladorFormularios();
+                                $eliminar->ctrEliminarRegistro();
+                                ?>
+                        </form>
                     </div>
-                    <form method="POST">
-                        <input type="hidden" value="<?php echo $value['id']; ?>" name="eliminarRegistro" />
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                        <?php
-                            $eliminar = new ControladorFormularios();
-                            $eliminar->ctrEliminarRegistro();
-                            ?>
-                    </form>
                 </td>
             </tr>
         <?php endforeach ?>
